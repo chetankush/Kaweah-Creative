@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Agency</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.4);
+        }
+    </style>
+
+    <!-- Update the style section in the head -->
+    <style>
+        .process-card {
+            perspective: 1000px;
+            height: 400px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .process-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 0.5rem;
+        }
+
+        .card-front {
+            background-position: center;
+            background-size: cover;
+        }
+
+        .card-back {
+            background: white;
+            transform: rotateY(180deg);
+            padding: 2rem;
+            overflow-y: auto;
+        }
+    </style>
+
+    <style>
+        .logo-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .background-animate {
+            background-size: 400%;
+            animation: gradientAnimation 8s ease infinite;
+        }
+
+
+    </style>
+
+    <style>
+        .button-wrapper {
+            position: relative;
+            perspective: 1000px;
+            z-index: 1;
+        }
+    
+        .transparent-button {
+            display: inline-block;
+            padding: 0.75rem 3rem;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background-color: transparent;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+            transform-origin: center center;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .flash {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at var(--x) var(--y), 
+                rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0.8) 20%,
+                rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.1s ease-out;
+        }
+    
+        .flash.active {
+            opacity: 1;
+            animation: flashFade 0.3s ease-out forwards;
+        }
+    
+        @keyframes flashFade {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+
+
+    <style>
+        .bg-overlay {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+        }
+        .transparent-button {
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+        .transparent-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 md:px-16 py-4 transition-all duration-300 bg-white ">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <img src="./assets/kc_logo.png" alt="kaweah-creative logo" class="w-40">
+
+            <div class="flex space-x-8 md:space-x-12">
+                <a href="/"
+                class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Home</a>
+               <a href="AboutUs.html"
+                    class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">About
+                    Us</a>
+                <a href="Projects.html"
+                    class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Projects</a>
+                <a href="Contact.html"
+                    class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Contact
+                    Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative h-screen">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="./assets/bg_im1.jpg" alt="City Bridge" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative h-full max-w-7xl mx-auto px-6 md:px-16">
+            <div class="h-full flex flex-col justify-end pb-32">
+                <div class="text-white max-w-3xl ">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mt-4">
+                        STORIES THAT FLOW<br />
+                        LIKE NATURE, UNRESTRICTED AND BOLD.
+                    </h1>
+                    <p class="text-lg md:text-xl max-w-xl mt-4 -mb-12">
+                        Every story carries its own transformative power, waiting to be unleashed through boundless creativity and fearless expression.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-4 right-12 animate-bounce">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Process Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 md:px-16">
+            <div class="text-left mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Production Process</h2>
+                <p class="text-gray-600 max-w-2xl ">From concept to final delivery, our streamlined process ensures your
+                    story is told with maximum impact and efficiency.</p>
+            </div>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="process-card">
+                    <div class="card-inner">
+                        <!-- Front -->
+                        <div class="card-front relative">
+                            <img src="./assets/pre-productionphase.png" alt="Pre-Production"
+                                class="w-full h-full object-cover" />
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white p-8">
+                                <!-- <i class="fas fa-pencil-alt text-4xl mb-4"></i> -->
+                                <h3 class="text-2xl font-bold">Pre-Production</h3>
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="card-back">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Pre-Production Excellence</h3>
+                            <p class="text-gray-600 mb-4">
+                                We believe pre-production is the foundation of every successful project. Our meticulous
+                                planning process ensures nothing is left to chance.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Production Card (similar structure, different content) -->
+                <div class="process-card">
+                    <div class="card-inner">
+                        <div class="card-front relative">
+                            <img src="/assets/Productionphase.jpg" alt="Production"
+                                class="w-full h-full object-cover" />
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white p-8">
+                                <!-- <i class="fas fa-video text-4xl mb-4"></i> -->
+                                <h3 class="text-2xl font-bold">Production</h3>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Production Mastery</h3>
+                            <p class="text-gray-600 mb-4">
+                                During production, we transform plans into reality with precision and artistic
+                                excellence.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post-Production Card -->
+                <div class="process-card">
+                    <div class="card-inner">
+                        <div class="card-front relative">
+                            <img src="./assets/post-productionphase.jpg" alt="Post-Production"
+                                class="w-full h-full object-cover" />
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white p-8">
+                                <!-- <i class="fas fa-film text-4xl mb-4"></i> -->
+                                <h3 class="text-2xl font-bold">Post-Production</h3>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Post-Production Magic</h3>
+                            <p class="text-gray-600 mb-4">
+                                Our post-production process is where your story truly comes to life through careful
+                                crafting and attention to detail.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Card -->
+                <div class="process-card">
+                    <div class="card-inner">
+                        <div class="card-front relative">
+                            <img src="/assets/deliveryphase.jpg" alt="Delivery" class="w-full h-full object-cover" />
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white p-8">
+                                <!-- <i class="fas fa-paper-plane text-4xl mb-4"></i> -->
+                                <h3 class="text-2xl font-bold">Delivery</h3>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Perfect Delivery</h3>
+                            <p class="text-gray-600 mb-4">
+                                Delivery is more than just sending files - it's ensuring your content achieves maximum
+                                impact across all platforms.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- CTA Section -->
+<section class="relative h-screen">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img src="./assets/cta_bg.jpeg" alt="City Night Scene" class="w-full h-full object-cover"/>
+        <div class="absolute inset-0 bg-overlay"></div>
+    </div>
+
+    <!-- Outer Container for Vertical Centering -->
+    <div class="relative h-full flex items-center justify-center">
+        <!-- Content Container -->
+        <div class="flex flex-col items-center justify-center text-center px-4 py-12">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                DO YOU WANT TO KNOW MORE
+            </h2>
+            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-12">
+                There's no story we can't tell, no audience we can't reach, and no project that we can't handle. There's no story...There's no story we can't tell
+            </p>
+            <div class="button-wrapper">
+                <a href="Contact.html" class="transparent-button">
+                    Contact Us
+                    <div class="flash"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <section class="relative h-screen">
+  
+    <div class="absolute inset-0">
+        <img src="./assets/cta_bg.jpeg" alt="City Night Scene" class="w-full h-full object-cover"/>
+        <div class="absolute inset-0 bg-overlay"></div>
+    </div>
+
+    
+    <div class="relative h-full flex items-center justify-center">
+       
+        <div class="flex flex-col items-center justify-center text-center px-4 py-12">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                DO YOU WANT TO KNOW MORE
+            </h2>
+            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-12">
+                There's no story we can't tell, no audience we can't reach, and no project that we can't handle. There's no story...There's no story we can't tell
+            </p>
+            <a href="#contact" class="transparent-button text-white px-12 py-3 uppercase tracking-wider text-sm font-medium">
+                Contact Us
+            </a>
+        </div>
+    </div>
+</section> -->
+                  <!-- Logo Showcase Section -->
+                  <section class="pt-20 bg-white">
+                    <div class="container mx-auto px-6">
+                        <div class="max-w-5xl mx-auto text-center">
+                            <!-- Logo Container -->
+                            <div class="logo-reveal mb-12">
+                                <img src="./assets/KC_BG.jpeg" alt="Company Logo" class="mx-auto w-full mb-8">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <script>
+                    const button = document.querySelector('.transparent-button');
+                    const buttonWrapper = document.querySelector('.button-wrapper');
+                    let rect = button.getBoundingClientRect();
+                    const flash = document.querySelector('.flash');
+                
+                    // Update rect on window resize
+                    window.addEventListener('resize', () => {
+                        rect = button.getBoundingClientRect();
+                    });
+                
+                    // Enhanced tilt effect on hover
+                    button.addEventListener('mousemove', (e) => {
+                        rect = button.getBoundingClientRect();
+                        
+                        // Calculate relative position within the button (0 to 1)
+                        const relativeX = (e.clientX - rect.left) / rect.width;
+                        const relativeY = (e.clientY - rect.top) / rect.height;
+                        
+                        // Calculate tilt angles based on cursor position
+                        const tiltX = (relativeY * 20 - 10);
+                        const tiltY = (relativeX * 20 - 10);
+                        
+                        button.style.transform = `
+                            perspective(1000px) 
+                            rotateX(${-tiltX}deg) 
+                            rotateY(${tiltY}deg) 
+                            scale(1.05)
+                        `;
+                    });
+                
+                    // Reset on mouse leave
+                    button.addEventListener('mouseleave', () => {
+                        button.style.transform = `
+                            perspective(1000px) 
+                            rotateX(0deg) 
+                            rotateY(0deg) 
+                            scale(1)
+                        `;
+                    });
+                
+                    // Flash effect on click
+                    button.addEventListener('click', (e) => {
+                        const rect = button.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        // Set the flash origin to click position
+                        flash.style.setProperty('--x', `${x}px`);
+                        flash.style.setProperty('--y', `${y}px`);
+                        
+                        // Reset animation
+                        flash.classList.remove('active');
+                        void flash.offsetWidth; // Force reflow
+                        flash.classList.add('active');
+                        
+                        // Optional: Add a brief white overlay to the whole page
+                        const whiteFlash = document.createElement('div');
+                        whiteFlash.style.cssText = `
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: white;
+                            opacity: 0.3;
+                            pointer-events: none;
+                            z-index: 9999;
+                        `;
+                        document.body.appendChild(whiteFlash);
+                        
+                        // Remove the white flash
+                        setTimeout(() => {
+                            whiteFlash.style.opacity = '0';
+                            setTimeout(() => whiteFlash.remove(), 300);
+                        }, 50);
+                    });
+                </script>
+</body>
+
+</html>
