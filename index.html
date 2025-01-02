@@ -72,8 +72,6 @@
             background-size: 400%;
             animation: gradientAnimation 8s ease infinite;
         }
-
-
     </style>
 
     <style>
@@ -82,7 +80,7 @@
             perspective: 1000px;
             z-index: 1;
         }
-    
+
         .transparent-button {
             display: inline-block;
             padding: 0.75rem 3rem;
@@ -101,35 +99,37 @@
             position: relative;
             overflow: hidden;
         }
-    
+
         .flash {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            background: radial-gradient(circle at var(--x) var(--y), 
-                rgba(255, 255, 255, 1) 0%,
-                rgba(255, 255, 255, 0.8) 20%,
-                rgba(255, 255, 255, 0) 70%);
+            background: radial-gradient(circle at var(--x) var(--y),
+                    rgba(255, 255, 255, 1) 0%,
+                    rgba(255, 255, 255, 0.8) 20%,
+                    rgba(255, 255, 255, 0) 70%);
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.1s ease-out;
         }
-    
+
         .flash.active {
             opacity: 1;
             animation: flashFade 0.3s ease-out forwards;
         }
-    
+
         @keyframes flashFade {
             0% {
                 transform: scale(0);
                 opacity: 1;
             }
+
             50% {
                 opacity: 1;
             }
+
             100% {
                 transform: scale(4);
                 opacity: 0;
@@ -142,10 +142,12 @@
         .bg-overlay {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
         }
+
         .transparent-button {
             border: 2px solid white;
             transition: all 0.3s ease;
         }
+
         .transparent-button:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
@@ -155,25 +157,65 @@
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 px-6 md:px-16 py-4 transition-all duration-300 bg-white ">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <img src="./assets/kc_logo.png" alt="kaweah-creative logo" class="w-40">
+    <nav class="fixed w-full z-50 px-6 md:px-16 py-4 transition-all duration-300 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <!-- Mobile Layout -->
+            <div class="md:hidden flex flex-col items-center">
+                <!-- Logo -->
+                <img src="./assets/kc_logo.png" alt="kaweah-creative logo" class="w-32 mb-4">
 
-            <div class="flex space-x-8 md:space-x-12">
-                <a href="/"
-                class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Home</a>
-               <a href="AboutUs.html"
-                    class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">About
-                    Us</a>
-                <a href="Projects.html"
-                    class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Projects</a>
-                <a href="Contact.html"
-                    class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Contact
-                    Us</a>
+                <!-- Hamburger/Close Button -->
+                <button id="mobile-menu-button" class="absolute right-6 top-6">
+                    <!-- Hamburger Icon -->
+                    <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-16 6h16">
+                        </path>
+                    </svg>
+                    <!-- Close Icon (Hidden by default) -->
+                    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+
+                <!-- Mobile Menu (Hidden by default) -->
+                <div id="mobile-menu" class="hidden w-full">
+                    <div class="flex flex-col items-center space-y-4 mt-4">
+                        <a href="/"
+                            class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Home</a>
+                        <a href="AboutUs.html"
+                            class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">About
+                            Us</a>
+                        <a href="Projects.html"
+                            class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Projects</a>
+                        <a href="Contact.html"
+                            class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Contact
+                            Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Layout -->
+            <div class="hidden md:flex justify-between items-center">
+                <img src="./assets/kc_logo.png" alt="kaweah-creative logo" class="w-40">
+                <div class="flex space-x-8 md:space-x-12">
+                    <a href="/"
+                        class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Home</a>
+                    <a href="AboutUs.html"
+                        class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">About
+                        </a>
+                    <a href="Projects.html"
+                        class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Projects</a>
+                    <a href="Contact.html"
+                        class="text-black hover:opacity-70 uppercase text-sm tracking-wider font-medium transition-opacity duration-300">Contact
+                        Us</a>
+                </div>
             </div>
         </div>
     </nav>
+
 
     <!-- Hero Section -->
     <div class="relative h-screen">
@@ -192,7 +234,8 @@
                         LIKE NATURE, UNRESTRICTED AND BOLD.
                     </h1>
                     <p class="text-lg md:text-xl max-w-xl mt-4 -mb-12">
-                        Every story carries its own transformative power, waiting to be unleashed through boundless creativity and fearless expression.
+                        Every story carries its own transformative power, waiting to be unleashed through boundless
+                        creativity and fearless expression.
                     </p>
                 </div>
             </div>
@@ -314,36 +357,37 @@
         </div>
     </section>
 
-    
-    <!-- CTA Section -->
-<section class="relative h-screen">
-    <!-- Background Image -->
-    <div class="absolute inset-0">
-        <img src="./assets/cta_bg.jpeg" alt="City Night Scene" class="w-full h-full object-cover"/>
-        <div class="absolute inset-0 bg-overlay"></div>
-    </div>
 
-    <!-- Outer Container for Vertical Centering -->
-    <div class="relative h-full flex items-center justify-center">
-        <!-- Content Container -->
-        <div class="flex flex-col items-center justify-center text-center px-4 py-12">
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                DO YOU WANT TO KNOW MORE
-            </h2>
-            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-12">
-                There's no story we can't tell, no audience we can't reach, and no project that we can't handle. There's no story...There's no story we can't tell
-            </p>
-            <div class="button-wrapper">
-                <a href="Contact.html" class="transparent-button">
-                    Contact Us
-                    <div class="flash"></div>
-                </a>
+    <!-- CTA Section -->
+    <section class="relative h-screen">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="./assets/cta_bg.jpeg" alt="City Night Scene" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-overlay"></div>
+        </div>
+
+        <!-- Outer Container for Vertical Centering -->
+        <div class="relative h-full flex items-center justify-center">
+            <!-- Content Container -->
+            <div class="flex flex-col items-center justify-center text-center px-4 py-12">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                    DO YOU WANT TO KNOW MORE
+                </h2>
+                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-12">
+                    There's no story we can't tell, no audience we can't reach, and no project that we can't handle.
+                    There's no story...There's no story we can't tell
+                </p>
+                <div class="button-wrapper">
+                    <a href="Contact.html" class="transparent-button">
+                        Contact Us
+                        <div class="flash"></div>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- <section class="relative h-screen">
+    <!-- <section class="relative h-screen">
   
     <div class="absolute inset-0">
         <img src="./assets/cta_bg.jpeg" alt="City Night Scene" class="w-full h-full object-cover"/>
@@ -366,79 +410,95 @@
         </div>
     </div>
 </section> -->
-                  <!-- Logo Showcase Section -->
-                  <section class="pt-20 bg-white">
-                    <div class="container mx-auto px-6">
-                        <div class="max-w-5xl mx-auto text-center">
-                            <!-- Logo Container -->
-                            <div class="logo-reveal mb-12">
-                                <img src="./assets/KC_BG.jpeg" alt="Company Logo" class="mx-auto w-full mb-8">
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <!-- Logo Showcase Section -->
+    <footer class="bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 md:px-16 py-16">
+            <div class="flex flex-col md:flex-row justify-between">
+                <!-- Company Info -->
+                <div class="max-w-sm mb-8 md:mb-0">
+                    <img src="./assets/KC_BG.jpeg" alt="Kaweah Creative" class="h-12 mb-6">
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        A creative production house that transforms ideas into compelling visual narratives, where every
+                        story finds its perfect form of expression.
+                    </p>
+                    <div class="mt-8 text-sm text-gray-500">© 2025 Kaweah Creative</div>
+                </div>
 
+                <!-- Navigation Links -->
+                <div class="flex flex-col space-y-4">
+                    <a href="/"
+                        class="text-gray-500 hover:opacity-70 text-sm tracking-wider font-medium transition-opacity duration-300">HOME</a>
+                    <a href="AboutUs.html"
+                        class="text-gray-500 hover:opacity-70 text-sm tracking-wider font-medium transition-opacity duration-300">ABOUT
+                        US</a>
+                    <a href="Projects.html"
+                        class="text-gray-500 hover:opacity-70 text-sm tracking-wider font-medium transition-opacity duration-300">PROJECTS</a>
+                    <a href="Contact.html"
+                        class="text-gray-500 hover:opacity-70 text-sm tracking-wider font-medium transition-opacity duration-300">CONTACT
+                        US</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const button = document.querySelector('.transparent-button');
+        const buttonWrapper = document.querySelector('.button-wrapper');
+        let rect = button.getBoundingClientRect();
+        const flash = document.querySelector('.flash');
 
+        // Update rect on window resize
+        window.addEventListener('resize', () => {
+            rect = button.getBoundingClientRect();
+        });
 
-                <script>
-                    const button = document.querySelector('.transparent-button');
-                    const buttonWrapper = document.querySelector('.button-wrapper');
-                    let rect = button.getBoundingClientRect();
-                    const flash = document.querySelector('.flash');
-                
-                    // Update rect on window resize
-                    window.addEventListener('resize', () => {
-                        rect = button.getBoundingClientRect();
-                    });
-                
-                    // Enhanced tilt effect on hover
-                    button.addEventListener('mousemove', (e) => {
-                        rect = button.getBoundingClientRect();
-                        
-                        // Calculate relative position within the button (0 to 1)
-                        const relativeX = (e.clientX - rect.left) / rect.width;
-                        const relativeY = (e.clientY - rect.top) / rect.height;
-                        
-                        // Calculate tilt angles based on cursor position
-                        const tiltX = (relativeY * 20 - 10);
-                        const tiltY = (relativeX * 20 - 10);
-                        
-                        button.style.transform = `
+        // Enhanced tilt effect on hover
+        button.addEventListener('mousemove', (e) => {
+            rect = button.getBoundingClientRect();
+
+            // Calculate relative position within the button (0 to 1)
+            const relativeX = (e.clientX - rect.left) / rect.width;
+            const relativeY = (e.clientY - rect.top) / rect.height;
+
+            // Calculate tilt angles based on cursor position
+            const tiltX = (relativeY * 20 - 10);
+            const tiltY = (relativeX * 20 - 10);
+
+            button.style.transform = `
                             perspective(1000px) 
                             rotateX(${-tiltX}deg) 
                             rotateY(${tiltY}deg) 
                             scale(1.05)
                         `;
-                    });
-                
-                    // Reset on mouse leave
-                    button.addEventListener('mouseleave', () => {
-                        button.style.transform = `
+        });
+
+        // Reset on mouse leave
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = `
                             perspective(1000px) 
                             rotateX(0deg) 
                             rotateY(0deg) 
                             scale(1)
                         `;
-                    });
-                
-                    // Flash effect on click
-                    button.addEventListener('click', (e) => {
-                        const rect = button.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        
-                        // Set the flash origin to click position
-                        flash.style.setProperty('--x', `${x}px`);
-                        flash.style.setProperty('--y', `${y}px`);
-                        
-                        // Reset animation
-                        flash.classList.remove('active');
-                        void flash.offsetWidth; // Force reflow
-                        flash.classList.add('active');
-                        
-                        // Optional: Add a brief white overlay to the whole page
-                        const whiteFlash = document.createElement('div');
-                        whiteFlash.style.cssText = `
+        });
+
+        // Flash effect on click
+        button.addEventListener('click', (e) => {
+            const rect = button.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Set the flash origin to click position
+            flash.style.setProperty('--x', `${x}px`);
+            flash.style.setProperty('--y', `${y}px`);
+
+            // Reset animation
+            flash.classList.remove('active');
+            void flash.offsetWidth; // Force reflow
+            flash.classList.add('active');
+
+            // Optional: Add a brief white overlay to the whole page
+            const whiteFlash = document.createElement('div');
+            whiteFlash.style.cssText = `
                             position: fixed;
                             top: 0;
                             left: 0;
@@ -449,15 +509,30 @@
                             pointer-events: none;
                             z-index: 9999;
                         `;
-                        document.body.appendChild(whiteFlash);
-                        
-                        // Remove the white flash
-                        setTimeout(() => {
-                            whiteFlash.style.opacity = '0';
-                            setTimeout(() => whiteFlash.remove(), 300);
-                        }, 50);
-                    });
-                </script>
+            document.body.appendChild(whiteFlash);
+
+            // Remove the white flash
+            setTimeout(() => {
+                whiteFlash.style.opacity = '0';
+                setTimeout(() => whiteFlash.remove(), 300);
+            }, 50);
+        });
+
+
+
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+    </script>
 </body>
 
 </html>
